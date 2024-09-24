@@ -2,23 +2,28 @@
 <html>
   <head>
     <script id="vertex-shader" type="x-shader/x-vertex">
-      attribute vec4 vPosition;
-      void main(){
+        attribute vec4 vPosition;
+        attribute vec4 vColor;
+        varying vec4 fColor;
+        void
+        main() {
+        fColor = vColor;
         gl_Position = vPosition;
-      }
+        }
     </script>
 
     <script id="fragment-shader" type="x-shader/x-fragment">
-      precision mediump float;
-      uniform vec4 uColor;
-      void main(){
-        gl_FragColor = uColor;
-      }
+        precision mediump float;
+        varying vec4 fColor;
+        void
+        main() {
+        gl_FragColor = fColor;
+        }
     </script>
   <script type="text/javascript" src="webgl-utils.js"></script>
     <script type="text/javascript" src="initShaders.js"></script>
     <script type="text/javascript" src="MV.js"></script>
-    <script type="text/javascript" src="triangle.js"></script>
+    <script type="text/javascript" src="triangle_colors.js"></script>
     <title>202035335 박재혁
     </title>
   </head>
