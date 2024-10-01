@@ -2,33 +2,32 @@
 <html>
   <head>
     <script id="vertex-shader" type="x-shader/x-vertex">
-        attribute vec2 vPosition;
-        uniform vec2 vResolution;
+        attribute vec4 vPosition;
+        attribute vec4 vColor;
+        varying vec4 fColor;
         void
-        main()
-        {
-        // convert the position from pixels to 0.0 to 1.0
-        vec2 zeroToOne = vPosition / vResolution;
-        // convert from 0->1 to 0->2
-        vec2 zeroToTwo = zeroToOne * 2.0;
-        // convert from 0->2 to -1->+1 (clip space)
-        vec2 clipSpace = zeroToTwo - 1.0;
-        gl_Position = vec4(clipSpace, 0.0, 1.0);
-        
+        main() {
+        fColor = vColor;
+        gl_Position = vPosition;
         }
     </script>
 
     <script id="fragment-shader" type="x-shader/x-fragment">
         precision mediump float;
         varying vec4 fColor;
-        void main(){
-        gl_FragColor = vec4(1.0,0.0,0.5,1.0);
-        }
+        void
+        main() {
+        gl_FragColor = fColor;
+        //gl_FragColor.r = 1.0;
+        //gl_FragColor.g = 1.0;
+        //gl_FragColor.rgb = gl_FragColor.gbr;
 
+        }
     </script>
   <script type="text/javascript" src="webgl-utils.js"></script>
     <script type="text/javascript" src="initShaders.js"></script>
-    <script type="text/javascript" src="vertex_ex1.js"></script>
+    <script type="text/javascript" src="MV.js"></script>
+    <script type="text/javascript" src="exercise6.js"></script>
     <title>202035335 박재혁
     </title>
   </head>

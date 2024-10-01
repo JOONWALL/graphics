@@ -76,39 +76,41 @@ window.onload = function init() {
   var triangleBufferId = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, triangleBufferId);
   gl.bufferData(gl.ARRAY_BUFFER, flatten(triangleVertices), gl.STATIC_DRAW);
-
+  gl.vertexAttribPointer(vPosition,2,gl.FLOAT,false,0,0);
+  ///색칠하기
   var triangeColorBufferId = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, triangeColorBufferId);
   gl.bufferData(gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW);
-
-  //데이터 버퍼와 셰이더 변수를 연관시키기
-  gl.bindBuffer(gl.ARRAY_BUFFER,triangleBufferId);
-  gl.vertexAttribPointer(vPosition,2,gl.FLOAT,false,0,0);
-  gl.bindBuffer(gl.ARRAY_BUFFER, triangeColorBufferId);
   gl.vertexAttribPointer(vColor, 4, gl.FLOAT, false, 0, 0);
+
+  
 
   //독립 삼각형 그리기
   gl.enableVertexAttribArray(vPosition);
   gl.enableVertexAttribArray(vColor);
   gl.drawArrays(gl.TRIANGLES,0,3);
+  
+  
   //strip vertex buffer
   var stripBufferId = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER,stripBufferId);
   gl.bufferData(gl.ARRAY_BUFFER, flatten(stripVertices),gl.STATIC_DRAW);
 
   //데이터 버퍼와 셰이더 변수 연관시키기
-  gl.bindBuffer(gl.ARRAY_BUFFER, stripBufferId);
+  //gl.bindBuffer(gl.ARRAY_BUFFER, stripBufferId);
   gl.vertexAttribPointer(vPosition,2,gl.FLOAT,false,0,0);
   gl.enableVertexAttribArray(vPosition);
   //이거왜안떠
   gl.disableVertexAttribArray(vColor);
+  //노란색 지정
   gl.vertexAttrib4f(vColor, 1.0 ,1.0 ,0.0 ,1.0);
-
+  //사다리꼴 색칠
   gl.drawArrays(gl.TRIANGLE_STRIP,0,11);
 
   gl.vertexAttrib4f(vColor,0.0, 0.0, 0.0, 1.0);
+  //위에 지그재그
   gl.drawArrays(gl.LINE_STRIP,0,11);
-
+  //아래 지그재그
   gl.drawArrays(gl.LINE_STRIP,11,11);
 
 };

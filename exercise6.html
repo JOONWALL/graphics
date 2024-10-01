@@ -13,22 +13,22 @@
         vec2 zeroToTwo = zeroToOne * 2.0;
         // convert from 0->2 to -1->+1 (clip space)
         vec2 clipSpace = zeroToTwo - 1.0;
-        gl_Position = vec4(clipSpace, 0.0, 1.0);
+        gl_Position = vec4(clipSpace * vec2(1,-1),0,1);
         
         }
     </script>
 
     <script id="fragment-shader" type="x-shader/x-fragment">
         precision mediump float;
-        varying vec4 fColor;
+        uniform vec4 fColor;
         void main(){
-        gl_FragColor = vec4(1.0,0.0,0.5,1.0);
+        gl_FragColor = fColor;
         }
 
     </script>
   <script type="text/javascript" src="webgl-utils.js"></script>
     <script type="text/javascript" src="initShaders.js"></script>
-    <script type="text/javascript" src="vertex_ex1.js"></script>
+    <script type="text/javascript" src="exercise6.js"></script>
     <title>202035335 박재혁
     </title>
   </head>
@@ -39,5 +39,6 @@
     <canvas id="gl-canvas" width="512" height="512">
       Oops ... your browser doesn't support the HTML5 canvas element
     </canvas>
+    <h1>202035335박재혁</h1>
   </body>
 </html>
