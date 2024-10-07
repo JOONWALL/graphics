@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+      attribute vec4 vPosition;
+      attribute vec4 vColor;
+      varying vec4 fColor;
+
+      void main(){
+        gl_Position = vPosition;
+        fColor = vColor;
+        gl_PointSize = 10.0;
+      }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+      precision mediump float;
+      varying vec4 fColor;
+      void main(){
+        gl_FragColor = fColor;
+      }
+    </script>
+  <script type="text/javascript" src="../Common/webgl-utils.js"></script>
+    <script type="text/javascript" src="../Common/initShaders.js"></script>
+    <script type="text/javascript" src="../Common/MV.js"></script>
+    <script type="text/javascript" src="squarem.js"></script>
+    <title>202035335 박재혁
+    </title>
+  </head>
+
+  <body>
+    <!--버텍스셰이더 -> 로컬(vposition)v0v1v2에 각 glposition이있는데 거기에 들어감 attribute가 달라서 다른위치로 가게되는것
+        glfragcolor는 fragment색 집어넣을때 계속 불러오게됨
+        <script type="text/javascript" src="MV.js"></script>
+        -->
+    <canvas id="gl-canvas" width="512" height="512">
+      Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+  </body>
+</html>
